@@ -7,10 +7,10 @@ export default function AboutMeArticle() {
     <article className="p-10 pt-0 text-justify">
       <TypographyParagraph>
         As a fourth year Electronics Engineering student at the
-        <Hyperlink
-          url={UNIVERSITY_URL}
-          text=" University of the Philippines Diliman"
-        />
+        <Hyperlink url={UNIVERSITY_URL}>
+          {" "}
+          University of the Philippines Diliman
+        </Hyperlink>
         , I&apos;m honing my skills to become a versatile and adaptable
         full-stack software engineer. My background in electronics has equipped
         me with a strong foundation in technical problem-solving and
@@ -26,7 +26,7 @@ export default function AboutMeArticle() {
       </TypographyParagraph>
       <TypographyParagraph>
         Outside of school and coding, I am a casual 🎸, a regular 🎮, a binge 📺
-        show watcher, and an 💪 active person <strike>sometimes</strike>.
+        show watcher, and an 💪 active person.
       </TypographyParagraph>
     </article>
   );

@@ -31,7 +31,7 @@ export enum WorkMode {
 export type Company = {
   name: string;
   url: string;
-  address: string;
+  address?: string;
 };
 
 export default Experience;

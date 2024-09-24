@@ -4,7 +4,7 @@ export type Project = {
   description: string;
   url: string;
   videoUrl?: string[];
-  tags: Tag[];
+  tags: Tag[] | string[];
   startDate: Date;
   endDate?: Date;
   isArchived?: boolean;

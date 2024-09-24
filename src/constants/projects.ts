@@ -10,6 +10,7 @@ export const MY_PROJECTS: Project[] = [
     description:
       "A remote monitoring and alerting system for forest fires mitigation. Gold awardee at the Malaysia Technology Expo 2021.",
     tags: ["Python", "Raspberry Pi", "Arduino", "YOLOv5", "OpenCV"],
+    startDate: new Date("2021-02-01"),
     endDate: new Date("2021"),
     isArchived: true,
     isFeatured: true,
@@ -45,11 +46,13 @@ export const MY_PROJECTS: Project[] = [
     description:
       "Personal dotfiles for my Linux desktop. Includes custom scripts, themes, and configurations. Ready for copy-paste.",
     image: null,
+    startDate: new Date(),
   },
   {
     name: "Palanca Automation Bot",
     tags: ["Javascript", "Google Script"],
     url: "https://github.com/fxs1l/Palanca-Automation-Bot",
+    startDate: new Date(),
     image: null,
     description: "A GoogleScript based Palanca letter sender.",
   },
@@ -58,6 +61,7 @@ export const MY_PROJECTS: Project[] = [
     tags: ["Flutter", "Python", "Firebase", "IoT"],
     url: "https://github.com/fxs1l/Hayahay",
     image: null,
+    startDate: new Date(),
     description:
       "A home automation system for controlling appliances, lights, etc.",
   },
@@ -67,6 +71,7 @@ export const MY_PROJECTS: Project[] = [
     url: "https://github.com/fxs1l/Buoywatch",
     image: null,
     isFeatured: true,
+    startDate: new Date(),
     description: "A system that detects and reports illegal fishing.",
   },
 ];

@@ -27,11 +27,14 @@ import { formatDateRange } from "../utils/date-formatter";
 export default function HomePage() {
   const featuredProjects = MY_PROJECTS.filter((project) => project.isFeatured);
 
-  const sortedExperiences = MY_EXPERIENCES.toSorted((a, b) => {
+  const sortedExperiences = [...MY_EXPERIENCES].sort((a, b) => {
     if (b.endDate && a.endDate) {
-      return b.endDate - a.endDate || b.startDate - a.startDate;
+      return (
+        b.endDate.getTime() - a.endDate.getTime() ||
+        b.startDate.getTime() - a.startDate.getTime()
+      );
     } else {
-      return b.startDate - a.startDate;
+      return b.startDate.getTime() - a.startDate.getTime();
     }
   });
   return (
@@ -102,9 +105,7 @@ export default function HomePage() {
               </CardContent>
               <CardFooter className="flex flex-wrap gap-1 text-lg">
                 {project.tags.map((tag) => (
-                  <Badge classNamevariant="outline" key={tag}>
-                    {tag}
-                  </Badge>
+                  <Badge key={tag}>{tag}</Badge>
                 ))}
               </CardFooter>
             </AnimatedCard>
@@ -132,11 +133,14 @@ export default function HomePage() {
                 <TypographyHeading level={3}>
                   {experience.title}
                 </TypographyHeading>
-                <TypographyHeading level={4}>
-                  <Hyperlink url={experience.company.url} isBold={false}>
-                    {experience.company.name}
-                  </Hyperlink>
-                </TypographyHeading>
+
+                {experience.company && (
+                  <TypographyHeading level={4}>
+                    <Hyperlink url={experience.company.url} isBold={false}>
+                      {experience.company.name}
+                    </Hyperlink>
+                  </TypographyHeading>
+                )}
               </CardHeader>
 
               <CardContent className="text-foreground">

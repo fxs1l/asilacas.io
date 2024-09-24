@@ -27,7 +27,11 @@ export default function RootLayout(props: Readonly<Props>) {
       <head>
         <meta charSet="UTF-8" />
         <link rel="preconnect" href={GOOGLE_FONT_API} />
-        <link rel="preconnect" href={GOOGLE_FONT_PROVIDER} crossOrigin />
+        <link
+          rel="preconnect"
+          href={GOOGLE_FONT_PROVIDER}
+          crossOrigin="anonymous"
+        />
         <link href={GOOGLE_POPPINS} rel="stylesheet" />
       </head>
       <body className="">
