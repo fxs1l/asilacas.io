@@ -6,6 +6,7 @@ export type Experience = {
   mode?: WorkMode;
   startDate: Date;
   endDate?: Date;
+  isFeatured?: boolean;
 };
 
 export enum ExperienceType {

@@ -22,7 +22,11 @@ export default function AboutMeArticle() {
         I&apos;m interested in machine learning and IoT, and I&apos;ve built
         projects in these areas. I love exploring how technology can solve
         real-world problems. I use
-        <Hyperlink url={ARCH_LINUX_URL}> Arch</Hyperlink> btw.
+        <Hyperlink url={ARCH_LINUX_URL} isBold={false} isItalicized>
+          {" "}
+          Arch
+        </Hyperlink>{" "}
+        btw.
       </TypographyParagraph>
       <TypographyParagraph>
         Outside of school and coding, I am a casual 🎸, a regular 🎮, a binge 📺

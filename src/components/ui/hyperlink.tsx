@@ -1,5 +1,5 @@
+import Link from "next/link";
 import React from "react";
-
 interface Props {
   url: string;
   children: string | React.ReactNode;
@@ -14,5 +14,5 @@ export default function Hyperlink(props: Props) {
   ) : (
     modifiedChildren
   );
-  return <a href={url}>{modifiedChildren}</a>;
+  return <Link href={url}>{modifiedChildren}</Link>;
 }

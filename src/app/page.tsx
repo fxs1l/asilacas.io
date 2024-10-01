@@ -2,6 +2,8 @@
 
 import { GitHubLogoIcon, LinkedInLogoIcon } from "@radix-ui/react-icons";
 import { ArrowUpRightIcon, MailIcon } from "lucide-react";
+import { useRouter } from "next/navigation";
+import React, { useRef } from "react";
 import { ReactTyped } from "react-typed";
 import AnimatedCard from "../components/animated/animated-card";
 import AboutMeArticle from "../components/atoms/about-me";
@@ -11,36 +13,48 @@ import TypographyHeading from "../components/typography/heading";
 import TypographyParagraph from "../components/typography/paragraph";
 import { Badge } from "../components/ui/badge";
 import { Button } from "../components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-} from "../components/ui/card";
+import { CardContent, CardFooter, CardHeader } from "../components/ui/card";
 import Hyperlink from "../components/ui/hyperlink";
 import { FIRST_TAG, FULL_NAME, SECOND_TAG } from "../constants/name";
 import { MY_PROJECTS } from "../constants/projects";
-import { ROOT_URL } from "../constants/url";
+import { GITHUB_URL, LINKEDIN_URL, MAIL_URL, ROOT_URL } from "../constants/url";
 import { MY_EXPERIENCES } from "../definitions/experiences";
-import { formatDateRange } from "../utils/date-formatter";
+import { Route } from "../definitions/routes";
+import { formatDateRange } from "../utils/date";
 
 export default function HomePage() {
-  const featuredProjects = MY_PROJECTS.filter((project) => project.isFeatured);
+  const router = useRouter();
 
-  const sortedExperiences = [...MY_EXPERIENCES].sort((a, b) => {
-    if (b.endDate && a.endDate) {
-      return (
-        b.endDate.getTime() - a.endDate.getTime() ||
-        b.startDate.getTime() - a.startDate.getTime()
-      );
-    } else {
-      return b.startDate.getTime() - a.startDate.getTime();
+  const [aboutRef, projectsRef, experienceRef] = [
+    useRef(null),
+    useRef(null),
+    useRef(null),
+  ];
+  const handleClick = (ref: React.RefObject<HTMLElement>) => {
+    if (ref?.current) {
+      ref?.current.scrollIntoView({ behavior: "smooth" });
     }
-  });
+  };
+
+  const featuredProjects = MY_PROJECTS.filter((project) => project.isFeatured);
+  const sortedExperiences = [...MY_EXPERIENCES]
+    .filter((experience) => experience.isFeatured)
+    .sort((a, b) => {
+      if (b.endDate && a.endDate) {
+        return (
+          b.endDate.getTime() - a.endDate.getTime() ||
+          b.startDate.getTime() - a.startDate.getTime()
+        );
+      } else {
+        return b.startDate.getTime() - a.startDate.getTime();
+      }
+    });
+
   return (
     <>
       <header className="lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-1/2 lg:flex-col lg:justify-between lg:py-24">
-        <Card className="p-3">
+        {/* <Card className="p-3"> */}
+        <div>
           <div>
             <TypographyHeading className="p-10 pb-5 text-left">
               <Hyperlink isBold={false} url={ROOT_URL}>
@@ -58,36 +72,67 @@ export default function HomePage() {
               loopCount={4}
             />
           </TypographyHeading>
-        </Card>
+        </div>
+        {/* </Card> */}
         {/* TODO: Implement scrolling */}
         <div className="hidden p-10 lg:block">
-          <TypographyHeading level={4}>---About</TypographyHeading>
+          <TypographyHeading level={4}>
+            <button
+              onClick={() => {
+                handleClick(aboutRef);
+              }}
+            >
+              About
+            </button>
+          </TypographyHeading>
+
           <TypographyHeading className="font-medium" level={4}>
-            Blog
+            <button
+              onClick={() => {
+                handleClick(projectsRef);
+              }}
+            >
+              Projects
+            </button>
           </TypographyHeading>
           <TypographyHeading className="font-medium" level={4}>
-            Projects
+            <button
+              onClick={() => {
+                handleClick(experienceRef);
+              }}
+            >
+              Experience
+            </button>
           </TypographyHeading>
           <TypographyHeading className="font-medium" level={4}>
-            Experience
+            <Hyperlink isBold={false} url={Route.BLOG}>
+              Blog
+            </Hyperlink>
           </TypographyHeading>
         </div>
-        <div className="flex items-center gap-1 p-10">
-          <GitHubLogoIcon className="h-8 w-8" />
-          <LinkedInLogoIcon className="h-8 w-8" />
-          <MailIcon className="h-8 w-8" />
-          <ModeToggle />
+        <div className="items-cent er flex gap-1 p-10">
+          <Hyperlink url={GITHUB_URL}>
+            {" "}
+            <GitHubLogoIcon className="h-8 w-8" />
+          </Hyperlink>
+          <Hyperlink url={LINKEDIN_URL}>
+            <LinkedInLogoIcon className="h-8 w-8" />
+          </Hyperlink>
+          <Hyperlink url={MAIL_URL}>
+            <MailIcon className="h-8 w-8" />
+          </Hyperlink>
+
           {/* <div className="text-lg">| abacasio@up.edu.ph</div> */}
         </div>
       </header>
       <main className="pt-5 lg:w-1/2 lg:py-24">
-        <div>
+        <div ref={aboutRef}>
           <TypographyHeading className="p-10 pb-5 text-left text-2xl lg:text-4xl">
             About
           </TypographyHeading>
           <AboutMeArticle />
         </div>
-        <div className="flex flex-col justify-center">
+        <div className="flex flex-col justify-center" ref={projectsRef}>
           <TypographyHeading className="p-10 pb-5 text-left text-2xl lg:text-4xl">
             Projects
           </TypographyHeading>
@@ -95,7 +140,7 @@ export default function HomePage() {
           {featuredProjects.map((project) => (
             <AnimatedCard
               key={project.name}
-              className="mb-5 ml-5 pl-5 shadow-none"
+              className="mb-5 ml-5 rounded-lg pl-5"
             >
               <CardHeader>
                 <TypographyHeading level={3}>{project.name}</TypographyHeading>
@@ -110,11 +155,15 @@ export default function HomePage() {
               </CardFooter>
             </AnimatedCard>
           ))}
-          <Button variant="outline" className="self-center">
+          <Button
+            variant="outline"
+            className="self-center"
+            onClick={() => router.push(Route.PROJECTS)}
+          >
             View all projects <ArrowUpRightIcon className="h-4 w-4" />
           </Button>
         </div>
-        <div className="flex flex-col justify-center">
+        <div className="flex flex-col justify-center" ref={experienceRef}>
           <TypographyHeading className="p-10 pb-5 text-left text-2xl lg:text-4xl">
             Experience
           </TypographyHeading>
@@ -150,13 +199,18 @@ export default function HomePage() {
               </CardContent>
             </AnimatedCard>
           ))}
-          <Button variant="outline" className="self-center">
+          <Button
+            variant="outline"
+            className="self-center"
+            onClick={() => router.push(Route.EXPERIENCE)}
+          >
             View my resume <ArrowUpRightIcon className="h-4 w-4" />
           </Button>
 
           <Footer />
         </div>
       </main>
+      <ModeToggle />
     </>
   );
 }

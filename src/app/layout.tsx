@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { ThemeProvider } from "@/components/theme-provider";
 import type { Metadata } from "next";
 import React from "react";
@@ -33,6 +34,7 @@ export default function RootLayout(props: Readonly<Props>) {
           crossOrigin="anonymous"
         />
         <link href={GOOGLE_POPPINS} rel="stylesheet" />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
       <body className="">
         <ThemeProvider
