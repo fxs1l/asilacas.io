@@ -1,4 +1,4 @@
-import { ARCH_LINUX_URL, SYMPH_URL, UNIVERSITY_URL } from "../../constants/url";
+import { ARCH_LINUX_URL, UNIVERSITY_URL } from "../../constants/url";
 import TypographyParagraph from "../typography/paragraph";
 import Hyperlink from "../ui/hyperlink";
 
@@ -14,9 +14,7 @@ export default function AboutMeArticle() {
         , I&apos;m honing my skills to become a versatile and adaptable
         full-stack software engineer. My background in electronics has equipped
         me with a strong foundation in technical problem-solving and
-        communication systems (ex. the internet). I&apos;m currently gaining
-        valuable experience as a<b> Web and Mobile App Developer</b> intern at
-        <Hyperlink url={SYMPH_URL}> Symph.</Hyperlink>
+        communication systems (ex. the internet).
       </TypographyParagraph>
       <TypographyParagraph>
         I&apos;m interested in machine learning and IoT, and I&apos;ve built

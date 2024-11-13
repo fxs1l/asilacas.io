@@ -29,7 +29,8 @@ export const MY_EXPERIENCES: Experience[] = [
       url: SYMPH_URL,
     },
     mode: WorkMode.REMOTE,
-    startDate: new Date("2024-05"),
+    startDate: new Date("2024-05-04"),
+    endDate: new Date("2024-10-30"),
     isFeatured: true,
   },
   {

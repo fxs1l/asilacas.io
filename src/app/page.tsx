@@ -73,8 +73,6 @@ export default function HomePage() {
             />
           </TypographyHeading>
         </div>
-        {/* </Card> */}
-        {/* TODO: Implement scrolling */}
         <div className="hidden p-10 lg:block">
           <TypographyHeading level={4}>
             <button
