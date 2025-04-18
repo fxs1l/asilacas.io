@@ -83,16 +83,6 @@ export default function HomePage() {
               About
             </button>
           </TypographyHeading>
-
-          <TypographyHeading className="font-medium" level={4}>
-            <button
-              onClick={() => {
-                handleClick(projectsRef);
-              }}
-            >
-              Projects
-            </button>
-          </TypographyHeading>
           <TypographyHeading className="font-medium" level={4}>
             <button
               onClick={() => {
@@ -100,6 +90,15 @@ export default function HomePage() {
               }}
             >
               Experience
+            </button>
+          </TypographyHeading>
+          <TypographyHeading className="font-medium" level={4}>
+            <button
+              onClick={() => {
+                handleClick(projectsRef);
+              }}
+            >
+              Projects
             </button>
           </TypographyHeading>
           <TypographyHeading className="font-medium" level={4}>
@@ -129,37 +128,6 @@ export default function HomePage() {
             About
           </TypographyHeading>
           <AboutMeArticle />
-        </div>
-        <div className="flex flex-col justify-center" ref={projectsRef}>
-          <TypographyHeading className="p-10 pb-5 text-left text-2xl lg:text-4xl">
-            Projects
-          </TypographyHeading>
-
-          {featuredProjects.map((project) => (
-            <AnimatedCard
-              key={project.name}
-              className="mb-5 ml-5 rounded-lg pl-5"
-            >
-              <CardHeader>
-                <TypographyHeading level={3}>{project.name}</TypographyHeading>
-              </CardHeader>
-              <CardContent className="text-foreground">
-                {project.description}
-              </CardContent>
-              <CardFooter className="flex flex-wrap gap-1 text-lg">
-                {project.tags.map((tag) => (
-                  <Badge key={tag}>{tag}</Badge>
-                ))}
-              </CardFooter>
-            </AnimatedCard>
-          ))}
-          <Button
-            variant="outline"
-            className="self-center"
-            onClick={() => router.push(Route.PROJECTS)}
-          >
-            View all projects <ArrowUpRightIcon className="h-4 w-4" />
-          </Button>
         </div>
         <div className="flex flex-col justify-center" ref={experienceRef}>
           <TypographyHeading className="p-10 pb-5 text-left text-2xl lg:text-4xl">
@@ -204,9 +172,39 @@ export default function HomePage() {
           >
             View my resume <ArrowUpRightIcon className="h-4 w-4" />
           </Button>
-
-          <Footer />
         </div>
+        <div className="flex flex-col justify-center" ref={projectsRef}>
+          <TypographyHeading className="p-10 pb-5 text-left text-2xl lg:text-4xl">
+            Projects
+          </TypographyHeading>
+
+          {featuredProjects.map((project) => (
+            <AnimatedCard
+              key={project.name}
+              className="mb-5 ml-5 rounded-lg pl-5"
+            >
+              <CardHeader>
+                <TypographyHeading level={3}>{project.name}</TypographyHeading>
+              </CardHeader>
+              <CardContent className="text-foreground">
+                {project.description}
+              </CardContent>
+              <CardFooter className="flex flex-wrap gap-1 text-lg">
+                {project.tags.map((tag) => (
+                  <Badge key={tag}>{tag}</Badge>
+                ))}
+              </CardFooter>
+            </AnimatedCard>
+          ))}
+          <Button
+            variant="outline"
+            className="self-center"
+            onClick={() => router.push(Route.PROJECTS)}
+          >
+            View all projects <ArrowUpRightIcon className="h-4 w-4" />
+          </Button>
+        </div>
+        <Footer />
       </main>
       <ModeToggle />
     </>
