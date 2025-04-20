@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { ThemeProvider } from "@/components/theme-provider";
+import { Analytics } from "@vercel/analytics/react";
 import type { Metadata } from "next";
 import React from "react";
 import { SITE_DESCRIPTION } from "../constants/description";
@@ -45,6 +46,7 @@ export default function RootLayout(props: Readonly<Props>) {
         >
           <TwoColumnLayout>{children}</TwoColumnLayout>
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
