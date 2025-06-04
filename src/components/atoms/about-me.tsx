@@ -6,7 +6,7 @@ export default function AboutMeArticle() {
   return (
     <article className="p-10 pt-0 text-justify">
       <TypographyParagraph>
-        As a fourth year Electronics Engineering student at the
+        As a graduating Electronics Engineering student at the
         <Hyperlink url={UNIVERSITY_URL}>
           {" "}
           University of the Philippines Diliman
@@ -14,7 +14,7 @@ export default function AboutMeArticle() {
         , I&apos;m honing my skills to become a versatile and adaptable
         full-stack software engineer. My background in electronics has equipped
         me with a strong foundation in technical problem-solving and
-        communication systems (ex. the internet).
+        communication systems.
       </TypographyParagraph>
       <TypographyParagraph>
         I&apos;m interested in machine learning and IoT, and I&apos;ve built
